@@ -74,3 +74,10 @@ CMA condiciona los movimientos logísticos al cumplimiento financiero paso a pas
 
 ---
 *NOTA: Este documento expone el flujo estandarizado primario, sin embargo, la plataforma brinda capacidades modulares como Transbordos intermedios para Centros de Acopio y negociaciones algorítmicas de flete.*
+
+---
+
+## 📲 Descarga la App y Más Información
+
+- **[Descargar CMA en Google Play Store](https://play.google.com/store/apps/details?id=com.cma.app)**
+- **[Aviso de Privacidad y Términos y Condiciones](TERMINOS.md)**
