@@ -1,33 +1,200 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>CMA - Manual de Usuario</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Manual de Usuario de la plataforma Comercio Mundial de Alimentos">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <!-- Tema de Docsify -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+
+  <!-- Tipografía Moderna Premium (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- Tema base oscuro de Docsify Themeable -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
+
   <style>
+    /* VARIABLES DE DISEÑO "Next-Gen" CMA */
     :root {
-      --theme-color: #4CAF50;
+      /* Paleta HSL moderna - Modo Oscuro base */
+      --base-color: #0f172a;
+      /* Fondo general oscuro Slate */
+      --surface-color: #1e293b;
+      /* Fondo de tarjetas / Surface */
+      --primary-color: #10b981;
+      /* Verde Acento Esmeralda CMA */
+      --primary-glow: #10b98133;
+      --text-color: #f8fafc;
+      --text-muted: #94a3b8;
+
+      /* Variables Docsify Overrides */
+      --theme-color: var(--primary-color);
+      --base-background-color: var(--base-color);
+      --base-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      --heading-font-weight: 900;
+      --heading-h2-border-color: var(--surface-color);
+      --sidebar-background: rgba(15, 23, 42, 0.7);
+      --sidebar-nav-link-color: var(--text-muted);
+      --sidebar-nav-link-color--active: var(--primary-color);
+      --sidebar-width: 300px;
+    }
+
+    /* Fondo general con Gradiente Radial sutil */
+    body {
+      background: radial-gradient(circle at top left, #1e293b 0%, #0f172a 100%);
+      background-attachment: fixed;
+      font-family: var(--base-font-family);
+      color: var(--text-color);
+      letter-spacing: -0.015em;
+    }
+
+    /* MAIN CONTENT LAYER */
+    .markdown-section {
+      max-width: 850px;
+      margin: 0 auto;
+      padding-top: 5vh;
+    }
+
+    /* TITULOS CON EFECTO Y GRADIENTE */
+    .markdown-section h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5em;
+      text-shadow: 0 10px 30px var(--primary-glow);
+    }
+
+    .markdown-section h2 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--surface-color);
+      padding-bottom: 0.5em;
+      margin-top: 2em;
+      color: #fff;
+    }
+
+    .markdown-section h3 {
+      font-size: 1.5rem;
+      color: #cbd5e1;
+    }
+
+    /* TEXTO Y PÁRRAFOS */
+    .markdown-section p,
+    .markdown-section li {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+
+    .markdown-section strong {
+      color: #e2e8f0;
+      font-weight: 700;
+    }
+
+    /* LISTAS E INTERACCIONES */
+    .markdown-section li {
+      margin-bottom: 0.6em;
+    }
+
+    /* CÓDIGO INLINE ESTILO TECLA MAC */
+    .markdown-section code:not([class*="lang-"]) {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 0.2em 0.4em;
+      color: #6ee7b7;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9em;
+    }
+
+    /* BOTONES / ENLACES EFECTO HOVER */
+    .markdown-section a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border-bottom: 1px dashed rgba(16, 185, 129, 0.4);
+    }
+
+    .markdown-section a:hover {
+      color: #34d399;
+      border-bottom-color: #34d399;
+      text-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    /* BARRA LATERAL (SIDEBAR) CON GLASSMORFISMO */
+    aside.sidebar {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .app-name-link {
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: -1px;
+    }
+
+    /* ANIMACIÓN DE ENTRADA SUAVE */
+    .markdown-section {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* SCROLLBAR PREMIUM */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--base-color);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--surface-color);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
     }
   </style>
 </head>
+
 <body>
-  <div id="app">Cargando Manual de Usuario CMA...</div>
+  <div id="app">Activando Diseño de Última Generación CMA...</div>
   <script>
     window.$docsify = {
-      name: 'Manual CMA',
-      repo: '',
+      name: 'APP CMA',
+      repo: 'https://github.com/harleysdiazd-lgtm/CMA',
       loadSidebar: false,
       homepage: 'MANUAL_USUARIO.md',
       auto2top: true,
       maxLevel: 4,
-      subMaxLevel: 2
+      subMaxLevel: 2,
+      themeColor: '#10b981'
     }
   </script>
-  <!-- Docsify v4 -->
+  <!-- Docsify v4 y Plugin Themeable -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
 </body>
+
 </html>
