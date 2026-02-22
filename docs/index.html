@@ -1,200 +1,562 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8">
-  <title>CMA - Manual de Usuario</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Manual de Usuario de la plataforma Comercio Mundial de Alimentos">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-
-  <!-- Tipografía Moderna Premium (Inter) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
-  <!-- Tema base oscuro de Docsify Themeable -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMA | Comercio Mundial de Alimentos</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- GSAP for Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+          },
+          colors: {
+            cma: {
+              dark: '#0B0F19',
+              card: '#111827',
+              primary: '#10B981',
+              secondary: '#059669',
+              accent: '#34D399',
+              text: '#E5E7EB',
+              muted: '#9CA3AF'
+            }
+          },
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            'hero-pattern': "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%2310b981\\' fill-opacity=\\'0.05\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    /* VARIABLES DE DISEÑO "Next-Gen" CMA */
-    :root {
-      /* Paleta HSL moderna - Modo Oscuro base */
-      --base-color: #0f172a;
-      /* Fondo general oscuro Slate */
-      --surface-color: #1e293b;
-      /* Fondo de tarjetas / Surface */
-      --primary-color: #10b981;
-      /* Verde Acento Esmeralda CMA */
-      --primary-glow: #10b98133;
-      --text-color: #f8fafc;
-      --text-muted: #94a3b8;
-
-      /* Variables Docsify Overrides */
-      --theme-color: var(--primary-color);
-      --base-background-color: var(--base-color);
-      --base-font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      --heading-font-weight: 900;
-      --heading-h2-border-color: var(--surface-color);
-      --sidebar-background: rgba(15, 23, 42, 0.7);
-      --sidebar-nav-link-color: var(--text-muted);
-      --sidebar-nav-link-color--active: var(--primary-color);
-      --sidebar-width: 300px;
-    }
-
-    /* Fondo general con Gradiente Radial sutil */
     body {
-      background: radial-gradient(circle at top left, #1e293b 0%, #0f172a 100%);
-      background-attachment: fixed;
-      font-family: var(--base-font-family);
-      color: var(--text-color);
-      letter-spacing: -0.015em;
+      background-color: #0B0F19;
+      color: #E5E7EB;
+      overflow-x: hidden;
     }
 
-    /* MAIN CONTENT LAYER */
-    .markdown-section {
-      max-width: 850px;
-      margin: 0 auto;
-      padding-top: 5vh;
-    }
-
-    /* TITULOS CON EFECTO Y GRADIENTE */
-    .markdown-section h1 {
-      font-size: 3.5rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, #34d399 0%, #059669 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5em;
-      text-shadow: 0 10px 30px var(--primary-glow);
-    }
-
-    .markdown-section h2 {
-      font-size: 2.2rem;
-      border-bottom: 2px solid var(--surface-color);
-      padding-bottom: 0.5em;
-      margin-top: 2em;
-      color: #fff;
-    }
-
-    .markdown-section h3 {
-      font-size: 1.5rem;
-      color: #cbd5e1;
-    }
-
-    /* TEXTO Y PÁRRAFOS */
-    .markdown-section p,
-    .markdown-section li {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--text-muted);
-    }
-
-    .markdown-section strong {
-      color: #e2e8f0;
-      font-weight: 700;
-    }
-
-    /* LISTAS E INTERACCIONES */
-    .markdown-section li {
-      margin-bottom: 0.6em;
-    }
-
-    /* CÓDIGO INLINE ESTILO TECLA MAC */
-    .markdown-section code:not([class*="lang-"]) {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      padding: 0.2em 0.4em;
-      color: #6ee7b7;
-      font-family: 'Fira Code', monospace;
-      font-size: 0.9em;
-    }
-
-    /* BOTONES / ENLACES EFECTO HOVER */
-    .markdown-section a {
-      color: var(--primary-color);
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      border-bottom: 1px dashed rgba(16, 185, 129, 0.4);
-    }
-
-    .markdown-section a:hover {
-      color: #34d399;
-      border-bottom-color: #34d399;
-      text-shadow: 0 0 15px var(--primary-glow);
-    }
-
-    /* BARRA LATERAL (SIDEBAR) CON GLASSMORFISMO */
-    aside.sidebar {
+    .glass-nav {
+      background: rgba(17, 24, 39, 0.7);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    .app-name-link {
-      font-weight: 900;
-      font-size: 1.5rem;
-      letter-spacing: -1px;
+    .glass-card {
+      background: rgba(17, 24, 39, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    /* ANIMACIÓN DE ENTRADA SUAVE */
-    .markdown-section {
-      animation: fadeIn 0.8s ease-out forwards;
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.2);
+      border-color: rgba(16, 185, 129, 0.3);
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
+    .gradient-text {
+      background: linear-gradient(135deg, #34D399 0%, #10B981 50%, #059669 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .blob {
+      position: absolute;
+      filter: blur(80px);
+      z-index: -1;
+      opacity: 0.4;
+      animation: float 10s infinite ease-in-out alternate;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      100% {
+        transform: translateY(-20px) scale(1.1);
       }
     }
 
-    /* SCROLLBAR PREMIUM */
+    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
-      height: 8px;
     }
 
     ::-webkit-scrollbar-track {
-      background: var(--base-color);
+      background: #0B0F19;
     }
 
     ::-webkit-scrollbar-thumb {
-      background: var(--surface-color);
+      background: #374151;
       border-radius: 4px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: #475569;
+      background: #10B981;
+    }
+
+    .accordion-content {
+      transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+
+    .accordion-content.active {
+      max-height: 500px;
+      opacity: 1;
+      padding-top: 1rem;
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #10B981;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
     }
   </style>
 </head>
 
-<body>
-  <div id="app">Activando Diseño de Última Generación CMA...</div>
+<body class="antialiased selection:bg-cma-primary selection:text-white bg-hero-pattern">
+
+  <!-- Ambient Background Lighting -->
+  <div class="blob bg-cma-primary w-96 h-96 rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
+  <div class="blob bg-blue-900 w-96 h-96 rounded-full bottom-0 right-0 translate-x-1/3 translate-y-1/3 delay-700"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2 group">
+        <div
+          class="w-10 h-10 rounded-xl bg-gradient-to-br from-cma-accent to-cma-secondary flex items-center justify-center shadow-lg shadow-cma-primary/20 group-hover:shadow-cma-primary/40 transition-all">
+          <span class="font-display font-bold text-white text-xl">C</span>
+        </div>
+        <span class="font-display font-bold text-2xl tracking-tight text-white">CMA</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#plataforma"
+          class="nav-link text-sm font-medium text-cma-text hover:text-white transition-colors">Plataforma</a>
+        <a href="#manual" class="nav-link text-sm font-medium text-cma-text hover:text-white transition-colors">Manual
+          Autorizado</a>
+        <a href="#terminos"
+          class="nav-link text-sm font-medium text-cma-text hover:text-white transition-colors">Términos Legales</a>
+      </div>
+
+      <div class="hidden md:flex items-center gap-4">
+        <a href="#descargar"
+          class="px-6 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm font-medium transition-all hover:scale-105 active:scale-95">
+          Centro de Pruebas
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.cma.app" target="_blank"
+          class="px-6 py-2.5 rounded-full bg-gradient-to-r from-cma-primary to-cma-secondary text-white text-sm font-medium shadow-lg shadow-cma-primary/25 hover:shadow-cma-primary/40 transition-all hover:scale-105 active:scale-95 flex items-center gap-2">
+          <i class="fab fa-google-play"></i> Descargar App
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden text-cma-text hover:text-white" id="mobile-menu-btn">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    class="fixed inset-0 z-40 bg-cma-dark/95 backdrop-blur-xl translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8"
+    id="mobile-menu">
+    <button class="absolute top-6 right-6 text-2xl text-cma-text" id="close-menu-btn">
+      <i class="fas fa-times"></i>
+    </button>
+    <a href="#plataforma" class="text-2xl font-display font-medium mobile-link">Plataforma</a>
+    <a href="#manual" class="text-2xl font-display font-medium mobile-link">Manual Autorizado</a>
+    <a href="#terminos" class="text-2xl font-display font-medium mobile-link">Términos Legales</a>
+    <a href="#descargar" class="text-2xl font-display font-medium mobile-link">Centro de Pruebas</a>
+    <a href="https://play.google.com/store/apps/details?id=com.cma.app"
+      class="px-8 py-3 rounded-full bg-cma-primary text-white font-medium mobile-link">Descargar App</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="plataforma" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cma-primary/10 border border-cma-primary/20 text-cma-accent text-sm font-medium mb-8 gs-reveal">
+        <span class="w-2 h-2 rounded-full bg-cma-accent animate-pulse"></span>
+        Ecosistema Logístico Agrícola
+      </div>
+
+      <h1 class="text-5xl md:text-7xl font-display font-bold tracking-tight mb-6 leading-tight gs-reveal">
+        El Futuro del <br />
+        <span class="gradient-text">Comercio de Alimentos</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-cma-muted max-w-2xl mx-auto mb-10 gs-reveal">
+        Conectando Productores, Distribuidores y Transportadores mediante tecnología de punta, trazabilidad satelital y
+        pagos seguros estructurados.
+      </p>
+
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 gs-reveal">
+        <a href="#descargar"
+          class="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-cma-dark font-semibold hover:bg-gray-100 transition-colors shadow-xl">
+          Acceder a la Plataforma
+        </a>
+        <a href="#manual"
+          class="w-full sm:w-auto px-8 py-4 rounded-full glass-card text-white font-semibold hover:bg-white/5 transition-colors flex items-center justify-center gap-2">
+          Leer Documentación Técnica <i class="fas fa-arrow-right text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Manual Section -->
+  <section id="manual" class="py-24 relative border-t border-white/5 bg-gradient-to-b from-transparent to-black/30">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16 gs-reveal">
+        <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Manual Operativo Autorizado</h2>
+        <p class="text-cma-muted text-lg">Guía técnica y normativa para la operación dentro del ecosistema CMA.</p>
+      </div>
+
+      <div class="space-y-4">
+        <!-- Acc 1 -->
+        <div class="glass-card rounded-2xl p-6 cursor-pointer gs-reveal acc-trigger">
+          <div class="flex justify-between items-center">
+            <h3 class="text-xl font-medium text-white flex items-center gap-3">
+              <span
+                class="w-8 h-8 rounded-lg bg-cma-primary/20 text-cma-accent flex items-center justify-center text-sm">01</span>
+              Registro y Creación de Cuenta
+            </h3>
+            <i class="fas fa-chevron-down text-cma-muted transition-transform duration-300 acc-icon"></i>
+          </div>
+          <div class="accordion-content text-cma-muted mt-2 border-t border-white/5">
+            <p class="mb-4">Para iniciar operaciones en el ecosistema, formalice su registro corporativo o personal
+              seleccionando el rol operativo aplicable a su actividad económica:</p>
+            <ul class="list-disc pl-5 space-y-2 mb-4">
+              <li><strong class="text-white">Productor:</strong> Cultivadores de bienes agrícolas para venta mayorista
+                estructurada.</li>
+              <li><strong class="text-white">Distribuidor:</strong> Entidades compradoras para distribución secundaria.
+              </li>
+              <li><strong class="text-white">Transportador:</strong> Proveedores logísticos con parque automotor
+                habilitado.</li>
+              <li><strong class="text-white">Centro Operacional:</strong> Nodos de almacenamiento, acopio o
+                consolidación.</li>
+            </ul>
+            <p>Las credenciales de acceso requieren validación de identidad y registro de facturación de acuerdo a las
+              normativas de su jurisdicción.</p>
+          </div>
+        </div>
+
+        <!-- Acc 2 -->
+        <div class="glass-card rounded-2xl p-6 cursor-pointer gs-reveal acc-trigger">
+          <div class="flex justify-between items-center">
+            <h3 class="text-xl font-medium text-white flex items-center gap-3">
+              <span
+                class="w-8 h-8 rounded-lg bg-cma-primary/20 text-cma-accent flex items-center justify-center text-sm">02</span>
+              Emisión de Ofertas (Vender Productos)
+            </h3>
+            <i class="fas fa-chevron-down text-cma-muted transition-transform duration-300 acc-icon"></i>
+          </div>
+          <div class="accordion-content text-cma-muted mt-2 border-t border-white/5">
+            <p class="mb-4">Los Productores y Centros Operacionales gestionan el inventario visible en el "Global Feed"
+              de mercado mediante paneles transaccionales.</p>
+            <ol class="list-decimal pl-5 space-y-3">
+              <li><strong>Parametrización del Catálogo:</strong> Selección de clasificaciones jerárquicas aprobadas y
+                descriptores agronómicos.</li>
+              <li><strong>Pricing y Volumetría:</strong> Ingreso de tonelaje disponible y valuación unitaria. El motor
+                algorítmico computa lotes enteros.</li>
+              <li><strong>Requisitos de Movilización:</strong> Especificación obligatoria del recurso físico vehicular
+                exigido (e.g., control térmico, estacas).</li>
+              <li><strong>Auditoría Visual:</strong> Carga de evidencia fotográfica geo-referenciada para mitigación de
+                riesgo comercial.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Acc 3 -->
+        <div class="glass-card rounded-2xl p-6 cursor-pointer gs-reveal acc-trigger">
+          <div class="flex justify-between items-center">
+            <h3 class="text-xl font-medium text-white flex items-center gap-3">
+              <span
+                class="w-8 h-8 rounded-lg bg-cma-primary/20 text-cma-accent flex items-center justify-center text-sm">03</span>
+              Flujo Transaccional y Sistema de Semáforos
+            </h3>
+            <i class="fas fa-chevron-down text-cma-muted transition-transform duration-300 acc-icon"></i>
+          </div>
+          <div class="accordion-content text-cma-muted mt-2 border-t border-white/5">
+            <p class="mb-4">CMA implementa un modelo de riesgo mitigado a través de transacciones condicionadas y
+              métricas satelitales.</p>
+            <div class="bg-black/20 p-4 rounded-xl border border-white/5">
+              <h4 class="text-white font-medium mb-2">Protocolo Semáforo:</h4>
+              <ul class="space-y-3 text-sm">
+                <li class="flex items-start gap-3">
+                  <div class="w-2 h-2 rounded-full bg-red-500 mt-1.5 shrink-0"></div>
+                  <p><strong>Aseguramiento (Pase 1):</strong> El distribuidor inyecta capital de respaldo (50% upfront)
+                    en las cuentas fiduciarias vinculadas al productor para bloqueo de inventario.</p>
+                </li>
+                <li class="flex items-start gap-3">
+                  <div class="w-2 h-2 rounded-full bg-yellow-500 mt-1.5 shrink-0"></div>
+                  <p><strong>Movilización (Pase 2):</strong> Dispersión de viáticos logísticos al contratista de
+                    transporte en el lugar de origen.</p>
+                </li>
+                <li class="flex items-start gap-3">
+                  <div class="w-2 h-2 rounded-full bg-cma-primary mt-1.5 shrink-0"></div>
+                  <p><strong>Telemetría y Cierre:</strong> Seguimiento satelital en tiempo real. La liquidación final se
+                    procesa tras la firma digital de recepción, actualizando el "Credit Score" de la red CMA para las
+                    partes involucradas.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Downloads Area -->
+  <section id="descargar" class="py-24 relative overflow-hidden">
+    <div
+      class="blob bg-cma-secondary w-96 h-96 rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20">
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-16 gs-reveal">
+        <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Centro de Distribución de Software</h2>
+        <p class="text-cma-muted text-lg max-w-2xl mx-auto">Acceda a los terminales de operación CMA a través de
+          nuestros canales oficiales o forme parte del programa de optimización Beta.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <!-- Produccion -->
+        <div class="glass-card p-10 rounded-3xl text-center group gs-reveal">
+          <div
+            class="w-20 h-20 mx-auto bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl flex items-center justify-center border border-white/10 mb-6 shadow-2xl">
+            <i class="fab fa-google-play text-4xl text-white"></i>
+          </div>
+          <h3 class="text-2xl font-display font-bold text-white mb-2">Google Play Store</h3>
+          <p class="text-cma-muted mb-8 text-sm">Versión de Producción Estable. Recomendada para operaciones comerciales
+            diarias y flujo financiero.</p>
+          <a href="https://play.google.com/store/apps/details?id=com.cma.app" target="_blank"
+            class="block w-full py-4 rounded-xl bg-white text-cma-dark font-bold hover:bg-gray-200 transition-colors">
+            Descargar Estándar Oficial
+          </a>
+        </div>
+
+        <!-- Beta -->
+        <div class="relative p-10 rounded-3xl text-center group gs-reveal"
+          style="background: linear-gradient(145deg, rgba(16, 185, 129, 0.1) 0%, rgba(17, 24, 39, 0.8) 100%); border: 1px solid rgba(16, 185, 129, 0.2);">
+          <div
+            class="absolute top-4 right-4 bg-cma-primary/20 text-cma-accent text-xs font-bold px-3 py-1 rounded-full border border-cma-primary/30">
+            BETA CERRADA
+          </div>
+          <div
+            class="w-20 h-20 mx-auto bg-cma-primary/10 rounded-2xl flex items-center justify-center border border-cma-primary/30 mb-6">
+            <i class="fas fa-flask text-3xl text-cma-accent"></i>
+          </div>
+          <h3 class="text-2xl font-display font-bold text-white mb-2">Canal de Pruebas (APK)</h3>
+          <p class="text-cma-muted mb-8 text-sm">Terminal logístico con implementaciones tempranas. Exclusivo para
+            desarrolladores, auditores y Productores insignia.</p>
+          <a href="#"
+            class="block w-full py-4 rounded-xl bg-cma-primary/20 text-cma-accent font-bold border border-cma-primary/50 hover:bg-cma-primary hover:text-white transition-all">
+            Solicitar Acceso al Build
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legal Terms -->
+  <section id="terminos" class="py-24 border-t border-white/5 bg-black/40">
+    <div class="max-w-4xl mx-auto px-6 gs-reveal">
+      <h2 class="text-3xl md:text-4xl font-display font-bold mb-10 text-center">Protocolo Jurídico y Acuerdos</h2>
+
+      <div class="glass-card rounded-2xl p-8 md:p-12 prose prose-invert max-w-none">
+        <p class="text-cma-muted lead">Las siguientes cláusulas constituyen el marco legal operativo que rige el uso de
+          la arquitectura tecnológica CMA.</p>
+
+        <h3 class="text-white text-xl mt-8 mb-4 border-b border-white/10 pb-2">1. Ratificación de Acuerdos</h3>
+        <p class="text-cma-muted text-sm leading-relaxed">Al autenticarse y operar módulos logísticos y transaccionales
+          bajo cualquier rol corporativo, la entidad o individuo ratifica un convenio vinculante con Comercio Mundial de
+          Alimentos (CMA), sujetándose a políticas de auditoría, trazabilidad de datos y comisiones por procesamiento
+          tecnológico.</p>
+
+        <h3 class="text-white text-xl mt-8 mb-4 border-b border-white/10 pb-2">2. Naturaleza del Proveedor Tecnológico
+        </h3>
+        <p class="text-cma-muted text-sm leading-relaxed">CMA interviene estrictamente en calidad de orquestador digital
+          (Software as a Service) y canalizador logístico inteligente. La corporación CMA no ostenta titularidad física
+          sobre las manufacturas agrícolas negociadas, no opera flotillas automotrices de manera directa y declina
+          responsabilidad jurisdiccional por disputas biológicas en la calidad de las cosechas tras la auditoría física.
+        </p>
+
+        <h3 class="text-white text-xl mt-8 mb-4 border-b border-white/10 pb-2">3. Directrices de Privacidad Informática
+        </h3>
+        <p class="text-cma-muted text-sm leading-relaxed">La recolección de telemetría geoespacial (GPS Tracking de
+          fletes) y metadatos bancarios operan bajo cifrado AES-256 de extremo a extremo, siendo accesibles únicamente
+          por los componentes de seguridad designados y autoridades competentes bajo requerimiento judicial en estricto
+          cumplimiento con marcos regulatorios internacionales de tratamiento de datos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 bg-cma-dark py-12">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <div class="flex items-center justify-center gap-2 mb-6 opacity-50">
+        <div class="w-8 h-8 rounded-lg outline outline-1 outline-white/20 flex flex-col justify-center items-center">
+          <span class="font-display font-bold text-white text-xs">C</span>
+        </div>
+        <span class="font-display font-bold text-xl tracking-tight text-white">CMA</span>
+      </div>
+      <p class="text-cma-muted text-sm mb-4">Arquitectura Tecnológica e Infraestructura de Comercio Directo.</p>
+      <p class="text-gray-600 text-xs">© 2026 Comercio Mundial de Alimentos. Todos los derechos comerciales reservados.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts for interactivity and GSAP -->
   <script>
-    window.$docsify = {
-      name: 'APP CMA',
-      repo: 'https://github.com/harleysdiazd-lgtm/CMA',
-      loadSidebar: true,
-      homepage: 'MANUAL_USUARIO.md',
-      auto2top: true,
-      maxLevel: 4,
-      subMaxLevel: 2,
-      themeColor: '#10b981'
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Sticky Navbar effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('shadow-lg', 'shadow-black/20');
+      } else {
+        navbar.classList.remove('shadow-lg', 'shadow-black/20');
+      }
+    });
+
+    // Mobile Menu toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function toggleMenu() {
+      if (mobileMenu.classList.contains('translate-x-full')) {
+        mobileMenu.classList.remove('translate-x-full');
+      } else {
+        mobileMenu.classList.add('translate-x-full');
+      }
     }
+
+    mobileBtn.addEventListener('click', toggleMenu);
+    closeBtn.addEventListener('click', toggleMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+    // Accordion functionality
+    const triggers = document.querySelectorAll('.acc-trigger');
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const content = trigger.querySelector('.accordion-content');
+        const icon = trigger.querySelector('.acc-icon');
+
+        // Close others
+        document.querySelectorAll('.accordion-content').forEach(c => {
+          if (c !== content) {
+            c.classList.remove('active');
+            c.previousElementSibling.querySelector('.acc-icon').style.transform = 'rotate(0deg)';
+            c.parentElement.classList.remove('border-cma-primary/30');
+          }
+        });
+
+        // Toggle current
+        if (content.classList.contains('active')) {
+          content.classList.remove('active');
+          icon.style.transform = 'rotate(0deg)';
+          trigger.classList.remove('border-cma-primary/30');
+        } else {
+          content.classList.add('active');
+          icon.style.transform = 'rotate(180deg)';
+          trigger.classList.add('border-cma-primary/30');
+        }
+      });
+    });
+
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Initial reveals
+    gsap.fromTo(".gs-reveal",
+      { y: 50, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "body",
+          start: "top top"
+        }
+      }
+    );
+
+    // Scroll reveals
+    document.querySelectorAll('section').forEach(section => {
+      const reveals = section.querySelectorAll('.gs-reveal');
+      if (reveals.length > 0) {
+        gsap.fromTo(reveals,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 80%",
+            }
+          }
+        );
+      }
+    });
   </script>
-  <!-- Docsify v4 y Plugin Themeable -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
 </body>
 
 </html>
