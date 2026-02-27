@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMA | Eliminación de Cuenta de Usuario</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        cma: {
+                            dark: '#0B0F19',
+                            card: '#111827',
+                            primary: '#10B981',
+                            secondary: '#059669',
+                            accent: '#34D399',
+                            text: '#E5E7EB',
+                            muted: '#9CA3AF'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0B0F19;
+            color: #E5E7EB;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                transform: translateY(-20px) scale(1.1);
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-cma-primary selection:text-white min-h-screen relative py-12">
+    <!-- Dynamic Background elements -->
+    <div class="blob bg-red-900 w-96 h-96 rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
+    <div class="blob bg-cma-primary w-96 h-96 rounded-full bottom-0 right-0 translate-x-1/3 translate-y-1/3 delay-700">
+    </div>
+
+    <div class="max-w-3xl mx-auto px-6 relative z-10">
+        <div class="glass-card p-10 md:p-14 rounded-3xl relative">
+            <a href="index.html"
+                class="absolute top-6 left-6 text-sm text-cma-muted hover:text-white transition-colors flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </a>
+
+            <div class="text-center mt-8 mb-10">
+                <div
+                    class="w-16 h-16 mx-auto bg-red-500/10 rounded-2xl flex items-center justify-center border border-red-500/30 mb-6">
+                    <i class="fas fa-user-minus text-2xl text-red-400"></i>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">Eliminación de Cuenta CMA</h1>
+                <p class="text-cma-muted text-lg">Solicitud de baja y eliminación de datos para la aplicación Comercio
+                    Mundial de Alimentos (CMA).</p>
+            </div>
+
+            <div class="space-y-8 prose prose-invert max-w-none text-cma-muted">
+
+                <section>
+                    <h2 class="text-white text-xl font-medium border-b border-white/10 pb-2 mb-4">Proceso de Eliminación
+                    </h2>
+                    <p>Para solicitar la eliminación definitiva de tu cuenta y los datos asociados a la misma dentro de
+                        la red logística de CMA, por favor sigue estos pasos:</p>
+                    <ol class="list-decimal pl-5 space-y-2 mt-4">
+                        <li>Envía un correo electrónico a <strong>harleys.diazd@gmail.com</strong> desde la misma
+                            dirección de correo electrónico vinculada a tu cuenta de CMA.</li>
+                        <li>En el asunto del correo, especifica: <strong class="text-white">"Solicitud de Eliminación de
+                                Cuenta CMA"</strong>.</li>
+                        <li>En el cuerpo del correo, indícanos tu nombre completo o razón social, el rol de usuario
+                            (Productor, Distribuidor, Transportador, etc.) y una confirmación explícita de que deseas
+                            eliminar permanentemente tus datos.</li>
+                    </ol>
+                    <p class="mt-4 text-sm bg-red-500/10 border border-red-500/20 p-4 rounded-xl text-red-200">
+                        <i class="fas fa-info-circle mr-2"></i> Nuestro equipo procesará tu solicitud y te enviará una
+                        confirmación en un plazo no mayor a 7 días hábiles.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-white text-xl font-medium border-b border-white/10 pb-2 mb-4">Datos a Eliminar</h2>
+                    <p>Al procesar la eliminación de tu cuenta, los siguientes datos serán <strong>borrados de manera
+                            definitiva</strong> de nuestros servidores principales (Firebase) y registros comerciales:
+                    </p>
+                    <ul class="list-disc pl-5 space-y-1 mt-2">
+                        <li>Credenciales de autenticación y acceso corporativo.</li>
+                        <li>Información de perfil personal, certificaciones agronómicas y detalles de usuario.</li>
+                        <li>Catálogo activo de productos, lotes y ofertas publicadas (para Productores).</li>
+                        <li>Información de vehículos, flotillas y capacidad logística (para Transportadores).</li>
+                        <li>Evidencia fotográfica y multimedia alojada en nuestros repositorios de almacenamiento.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-white text-xl font-medium border-b border-white/10 pb-2 mb-4">Política de Retención
+                        de Datos</h2>
+                    <p>Por normativas de auditoría fiscal, trazabilidad legal y prevención de fraude en transacciones
+                        agrícolas, CMA está obligado a conservar ciertos datos <strong>de forma disociada
+                            (anónima)</strong> por un periodo de retención obligatorio, que incluye:</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-2">
+                        <li><strong>Historial Transaccional (5 años):</strong> Registros de despachos, movimientos de
+                            mercancía y recibos de pagos donde haya existido inyección de capital o ejecución logística.
+                            Estos datos se mantienen sin vinculación directa a tu identidad para auditorías contables.
+                        </li>
+                        <li><strong>Métricas de Telemetría (1 año):</strong> Datos de rutas satelitales (GPS) agregados,
+                            empleados únicamente para análisis de flujo sistémico y mitigación de disputas previas.</li>
+                    </ul>
+                </section>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
